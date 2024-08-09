@@ -14,8 +14,8 @@
         <li>
           <div class="language">
             <a href="">한국어</a>
-        </div>
-      </li>
+          </div>
+        </li>
         <li>
           <div class="search">
             <a href="">검색</a>
@@ -23,8 +23,8 @@
         </li>
       </ul>
     </div>
-    <nav>
-      <div class="logo"><a href="">Let's Korail</a></div>
+    <nav class="container">
+      <h1 class="logo"><a href="">Let's Korail</a></h1>
       <ul class="main-menu">
         <li>
           <a href="">승차권</a>
@@ -100,6 +100,7 @@
               <ul>
                 <li><a href="">할인 및 부가서비스</a></li>
 
+
                 <li><a href="">광고 안내</a></li>
               </ul>
             </li>
@@ -123,11 +124,21 @@
             <li><a href="">유실물</a></li>
             <li><a href="">암표제보</a></li>
           </ul></li>
-          </ul>
-        </nav>
-      
-    </div>
+      </ul>
+    </nav>
   </header>
+  <!-- 슬라이드 -->
+   <div class="slide-wrapper">
+    <ul class="slide-container">
+      <li><img src="" alt="">banner 1</li>
+      <li><img src="" alt="">banner 2</li>
+      <li><img src="" alt="">banner 3</li>
+    </ul>
+    <div class="slide-btn">
+      <button class="prev">prev</button>
+      <button class="next">next</button>
+    </div>
+   </div>
   <main>
     <div class="main-content">
       <div class="banner"></div>
@@ -135,19 +146,27 @@
         <li><a href="">승차권 예약</a></li>
         <li><a href="">예약 조회</a></li>
       </ul>
-      <ul>
+      <ul class="form-way">
         <li><a href="">왕복</a></li>
         <li><a href="">편도</a></li>
       </ul>
       <form action="">
-        <label for="">출발역</label>
-        <input type="text">
-        <label for="">도착역</label>
-        <input type="text">
-        <label for="">탑승일</label>
-        <input type="text">
-        <label for="">탑승열차</label>
-        <input type="text">
+        <div class="input-field">
+          <label for="">출발역</label>
+          <input type="text">
+        </div>
+        <div class="input-field">
+          <label for="">도착역</label>
+          <input type="text">
+        </div>
+        <div class="input-field">
+          <label for="">탑승일</label>
+          <input type="text">
+        </div>
+        <div class="input-field">
+          <label for="">탑승열차</label>
+          <input type="text">
+        </div>
         <button>조회</button>
       </form>
     </div>
