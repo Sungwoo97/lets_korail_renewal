@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Let's Korail</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <header>
@@ -14,12 +16,19 @@
         <li><a href="">마이페이지</a></li>
         <li>
           <div class="language">
-            <a href="">한국어</a>
+            <button>Language</button>
+            <ul>
+              <li>한국어</li>
+              <li>영어</li>
+              <li>일본어</li>
+              <li>중국어</li>
+            </ul>
           </div>
         </li>
         <li>
           <div class="search">
-            <a href="">검색</a>
+            <a href="#"> <span>검색</span> 
+              <i class="fa-solid fa-magnifying-glass"></i></a>
           </div>
         </li>
       </ul>
@@ -175,7 +184,7 @@
         <button>조회</button>
       </form>
     </div>
-    <section class="content-box">
+    <section class="content-box container">
       <ul>
         <li>
           <a href="">
@@ -212,7 +221,7 @@
         </li>  
       </ul>
     </section>
-    <section class="notice">
+    <section class="notice container">
       <div class="notice-content">
         <h2>알려드립니다</h2>
         <ul>
@@ -239,7 +248,7 @@
         <a href=""><img src="images/letskorail_app_promotion.png" alt=""></a>
       </div>
     </section>
-    <section class="services">
+    <section class="services container">
       <h2>여행의 완성을 위한 경험</h2>
       <ul>
         <li><a href="">관광열차 <img src="images/services_icon_1.svg" alt=""> </a></li>
