@@ -122,7 +122,6 @@ header .main-menu{
   
 }
 header .main-menu li{
-
   font-size: 20px;
   line-height: 92px;
   font-weight: 700;
@@ -133,22 +132,22 @@ header .main-menu ul {
 header .main-menu > li{
   text-align: center;
   width: 114px;
+  box-shadow: none;
+  transition: .3s;
 }
 header .main-menu > li:hover{
   box-shadow: 0 -5px 0 0 var(--primary) inset;
 }
 header .main-menu > li:hover > ul{
   background: #fff;
+  display: flex;
   align-items: start;
   justify-content: center;
-  display: flex;
   gap: 120px;
   position: absolute;
   top: 100%;
   left: 0;right: 0;
-  line-height: 32px;
   padding: 32px 131px;
-  flex-wrap: wrap;
 }
 
 header .main-menu ul li{
