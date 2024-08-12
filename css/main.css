@@ -46,6 +46,7 @@ header>div {
 .top-nav{
   display: flex;
   justify-content: end;
+  align-items: end;
   background: var(--white);
   gap: 50px;
 }
@@ -82,17 +83,19 @@ header>div {
 }
 .top-nav .search{
   font-size: 10px;
-  line-height: 14px;
+  line-height: 20px;
   border: 1px solid var(--gray);
   border-radius: 5px;
   box-sizing: border-box;
   transition: .3s;
-  
+  margin: 4.5px 15px;
 }
 .top-nav .search input{
   width: 100px;
   height: 100%;
   transition: .3s;
+  pointer-events: none;
+  padding: 3.5px 10px;
 }
 .top-nav .search button{
   width: 20px;
