@@ -81,23 +81,23 @@ header>div {
   transform: none;
 }
 .top-nav .search{
-  width: 120px;
   font-size: 10px;
   line-height: 14px;
   border: 1px solid var(--gray);
   border-radius: 5px;
-  margin: 4.5px 15px;
   box-sizing: border-box;
   transition: .3s;
-  padding: 3px 10px;
+  
 }
-.top-nav .search a{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+.top-nav .search input{
+  width: 100px;
+  height: 100%;
+  transition: .3s;
 }
-.top-nav .search:active{
+.top-nav .search button{
+  width: 20px;
+}
+.top-nav .search:active input{
   width: 200px;
 }
 header nav{
@@ -166,4 +166,7 @@ header .main-menu ul ul li{
   font-size: 14px;
   line-height: 32px;
   font-weight: 400;
+}
+.slide-container img{
+  width: 100%;
 }
