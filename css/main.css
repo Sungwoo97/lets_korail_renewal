@@ -283,4 +283,7 @@ header .main-menu ul ul li{
 .main-content input{
   width: 220px;
   height: 65px;
+  &::placeholder{
+    color: var(--black);
+  }
 }
