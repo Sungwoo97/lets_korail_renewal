@@ -8,27 +8,32 @@ const nextBtn = slideWrapper.querySelector('.next');
 let slideTimer;
 
 
+function setLayout(){
+ let slideWidth = slideWrapper.offsetWidth;
+ let slidesContainerWidth = slideWidth * slidesCount;
+ slideContainer.style.transform = `translateX(-${slidesContainerWidth}px)`;
+ console.log(slideContainer.style.transform);
+}
 
-// let slideWidth = slideWrapper.offsetWidth;
-// let slidesContainerWidth = slideWidth * slidesCount;
-// slideContainer.style.transform = `translateX(-${slidesContainerWidth}px)`;
-// console.log(slideContainer.style.transform);
-
+window.addEventListener('resize',()=>{
+  setLayout();
+})
 slides.forEach((slide, idx)=>{
   slide.style.left = `${idx * 100}%`;
 })
 
 function showSlide(num){
-
-  if(num > slidesCount-1){
+  if(currentIdx === num ) return;
+  if(num > slidesCount - 1){
     num = 0;
   }
   if(num < 0){
-    num = slidesCount-1;
+    num = slidesCount - 1;
   }
+  
   slideContainer.style.left =`${-num*100}%`;
   currentIdx = num;
-  
+  console.log(num);
 }
 showSlide(0);
 
@@ -47,9 +52,9 @@ function autoSlide(){
 }
 autoSlide();
 
-slideContainer.addEventListener('mouseenter', ()=>{
+slideWrapper.addEventListener('mouseenter', ()=>{
   clearInterval(slideTimer);
 })
-slideContainer.addEventListener('mouseleave',()=>{
+slideWrapper.addEventListener('mouseleave',()=>{
   autoSlide();
 })
