@@ -191,6 +191,7 @@ header .main-menu ul ul li{
 }
 /* Slide */
  .slide-wrapper{
+  width: 100%;
   position: relative;
   z-index: 0;
 }
@@ -324,7 +325,7 @@ header .main-menu ul ul li{
 .main-content button:hover{
   background: var(--gray);
 }
-
+/* Content */
 .content-box ul{
   display: flex;
   gap: 37px;
@@ -368,6 +369,7 @@ header .main-menu ul ul li{
     text-decoration: underline;
   }
 }
+/* Notice */
 .notice{
   display: flex;
   justify-content: space-between;
@@ -426,6 +428,7 @@ header .main-menu ul ul li{
     }
   }
 }
+/* Services */ 
 .services{
   background: var(--third);
   padding: 27px 0 64px;
@@ -463,6 +466,7 @@ header .main-menu ul ul li{
   width: 48px;
   height: 48px;
 }
+
 .services ul li:hover:after{
   position: absolute;
   content: '';
@@ -484,6 +488,7 @@ header .main-menu ul ul li{
   position: absolute;
   top: calc(100% - 15px);
 }
+/* Footer */
 footer{
   background: var(--mixedColor);
 }
@@ -494,7 +499,7 @@ footer{
 }
 .footer-wrap dt{
   color: var(--white);
-  margin-bottom: 44px;
+  margin-bottom: 32px;
   font-size: 20px;
   line-height: 29px;
   font-weight: 700;
@@ -505,7 +510,58 @@ footer{
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
+  cursor: pointer;
+}
+.footer-wrap .company dt{
+  margin-bottom: 34px;
+}
+.footer-wrap .company dd{
+  margin-bottom: 5px;
+  cursor: default;
 }
 .footer-wrap dd:last-child{
   margin-bottom: 0;
+}
+.company dd:nth-child(2){
+  margin-top: 24px;
+}
+.company dd:nth-child(3){
+  margin-bottom: 24px;
+}
+.footer-wrap .sns{
+  width: 222px;
+  display: flex; 
+  flex-wrap: wrap;
+  
+}
+.footer-wrap .sns dt{
+  width: 212px;
+  display: block;
+}
+.footer-wrap .sns dd{
+  width: 64px;
+  height: 64px; 
+  border-radius: 50%;
+  background: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.footer-wrap .sns dd i {
+  color: var(--mixedColor);
+  font-size:  28px;
+}
+.footer-wrap .sns dd:hover{
+  background: var(--lightGray);
+}
+.footer-wrap .sns dd:hover >{
+  color: #444444;
+}
+.footer-wrap + p{
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  padding: 0 0 48px;
 }
