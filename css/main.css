@@ -192,16 +192,28 @@ header .main-menu ul ul li{
 /* Slide */
  .slide-wrapper{
   width: 100%;
+  height: 500px;
   position: relative;
-  z-index: 0;
+  overflow: hidden;
 }
 .slide-container{
-  width: 5760px;
-  height: 500px;
-  display: flex;
-} 
-.slide-container img{
+  position: absolute;
   width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  transition: left 0.3s;
+} 
+.slide-container>li{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide-container img{
+  
 }
  .slide-btn button{
   position: absolute;
@@ -215,6 +227,7 @@ header .main-menu ul ul li{
   justify-content: center;
   align-items: center;
   top:calc(50% - 34px);
+  cursor: pointer;
 }
 .slide-btn .prev{
   left: 20px;
@@ -225,6 +238,10 @@ header .main-menu ul ul li{
 /* Form */
 .main-content{
   box-shadow: 2px 2px 3px rgba(0, 0 , 0, .25);
+  background: var(--white);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 .main-content > div{
   position: relative;
