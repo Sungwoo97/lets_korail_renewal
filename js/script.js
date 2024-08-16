@@ -9,6 +9,11 @@ let slideTimer;
 const formWay = document.querySelectorAll('.form-way li');
 const formTab = document.querySelectorAll('.reservation li a');
 const formContent = document.querySelectorAll('.main-content form');
+const contentBox = document.querySelector('.content-box');
+const contents = document.querySelectorAll('.content-box ul > li');
+const contentBoxOST = contentBox.offsetTop-600;
+
+
 
 // 슬라이드 복사
 for(let i = 0; i<slidesCount;i++){
@@ -59,7 +64,6 @@ allslides.forEach((slide, idx)=>{
 function showSlide(num){
   slideContainer.style.left =`${-num*100}%`;
   currentIdx = num;
-  console.log(currentIdx);
   if(currentIdx === slidesCount * 2 - 1 ){
     setTimeout(()=>{
       slideContainer.classList.remove('animated');
@@ -120,7 +124,7 @@ function formWayChange(){
   }
 }
 formWayChange();
-
+// 승차권 예약 / 예약 조회 탭 메뉴
 function formChange(){
   for(let forms of formTab){
     forms.addEventListener('click', (e)=>{
@@ -133,9 +137,23 @@ function formChange(){
         fc.classList.remove('form-active');
       }
       let target = forms.getAttribute('href');
-      console.log(target);
       document.querySelector(target).classList.add('form-active');
     });
   }
 }
 formChange();
+
+function scrollEvent(){
+  window.addEventListener('scroll', ()=>{
+    let scrollAmt = window.scrollY;
+    if(scrollAmt >= contentBoxOST){
+      for(let con of contents){
+        con.classList.remove('con-active');
+        if(!con.classList.contains('con-active')){
+          con.classList.add('con-active');
+        }
+      }
+    }
+  });
+}
+scrollEvent();
