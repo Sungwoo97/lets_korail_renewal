@@ -156,14 +156,14 @@
     <div class="main-content mb-2">
       <div class="container">
         <ul class="reservation">
-          <li><a href="">승차권 예약</a></li>
-          <li><a href="">예약 조회</a></li>
+          <li><a href="#ticket" class="form-active">승차권 예약</a></li>
+          <li><a href="#check">예약 조회</a></li>
         </ul>
-        <ul class="form-way ">
-          <li><a href="">왕복</a></li>
+        <ul class="form-way">
+          <li class="way-active"><a href="">왕복</a></li>
           <li><a href="">편도</a></li>
         </ul>
-        <form action="" >
+        <form class="form-active" id="ticket" action="">
           <div class="input-field">
             <label for="" class="hidden">출발역</label>
             <input type="text" placeholder="출발역">
@@ -183,6 +183,26 @@
             <label for="" class="hidden">탑승열차</label>
             <input type="text" placeholder="탑승열차">
             <i class="fa-solid fa-train-subway"></i>
+          </div>
+          <button>조회</button>
+        </form>
+        <form class="" id="check" action="">
+          <div class="form-member">
+            <div class="input-field">
+              <label for="" class="hidden">회원등록번호</label>
+              <input type="text" placeholder="회원등록번호">
+              <i class="fa-solid fa-train-subway"></i>
+            </div>
+            <div class="input-field">
+              <label for="" class="hidden">회원아이디</label>
+              <input type="id" placeholder="아이디">
+              <i class="fa-solid fa-train-subway"></i>
+            </div>
+            <div class="input-field">
+              <label for="" class="hidden">회원비밀번호</label>
+              <input type="password" placeholder="비밀번호">
+              <i class="fa-solid fa-train-subway"></i>
+            </div>
           </div>
           <button>조회</button>
         </form>
@@ -283,19 +303,19 @@
         </dl>
         <dl class="terms-of-use">
           <dt>이용약관</dt>
-          <dd>홈페이지이용약관</dd>
-          <dd>여객운송약관/부속약관</dd>
-          <dd>개인정보처리방침</dd>
-          <dd>이메일무단수집거부</dd>
-          <dd>저작권정책</dd>
+          <dd><a href="">홈페이지이용약관</a></dd>
+          <dd><a href="">여객운송약관/부속약관</a></dd>
+          <dd><a href="">개인정보처리방침</a></dd>
+          <dd><a href="">이메일무단수집거부</a></dd>
+          <dd><a href="">저작권정책</a></dd>
         </dl>
         <dl class="customer">
           <dt>고객지원</dt>
-          <dd>고객서비스현장</dd>
-          <dd>보도자료</dd>
-          <dd>정보공개</dd>
-          <dd>광고안내</dd>
-          <dd>러브포인트</dd>
+          <dd><a href="">고객서비스현장</a></dd>
+          <dd><a href="">보도자료</a></dd>
+          <dd><a href="">정보공개</a></dd>
+          <dd><a href="">광고안내</a></dd>
+          <dd><a href="">러브포인트</a></dd>
         </dl>
         <dl class="sns">
           <dt>SNS</dt>

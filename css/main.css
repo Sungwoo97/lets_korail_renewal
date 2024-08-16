@@ -102,13 +102,13 @@ header>div {
   width: 100px;
   height: 100%;
   transition: .3s;
-  pointer-events: none;
+  outline: none;
   padding: 3.5px 10px;
 }
 .top-nav .search button{
   width: 20px;
 }
-.top-nav .search:active input{
+.top-nav .search:hover input{
   width: 200px;
 }
 header nav{
@@ -260,24 +260,22 @@ header .main-menu ul ul li{
   text-align: center;
   border-radius: 10px 10px 0 0;
   bottom: 100%;
-}
-.reservation li:nth-child(1) a{
-  background: var(--white);
-}
-.reservation li:nth-child(1) a {
-  color: var(--primary);
   font-size: 19px;
   font-weight: 700;
+  background: var(--white);
+  color: var(--primary);
+  transition: .3s;
 }
-.reservation li:nth-child(2) a{
+.reservation li:hover a{
+  font-size: 20px;
+}
+.reservation li a.form-active{
   background: var(--primary);
   color: var(--white);
-  left: 189px;
 }
-.reservation li:nth-child(2) a {
-  color: var(--white);
-  font-size: 19px;
-  font-weight: 700;
+
+.reservation li:nth-child(2) a{
+  left: 189px;
 }
 .form-way {
   display: flex;
@@ -288,43 +286,55 @@ header .main-menu ul ul li{
   line-height: 46px;
   display: block;
   text-align: center;
+  background: var(--lightGray);
+  color: var(--primary);
+  transition: .3s;
+  font-size: 16px;
+}
+.form-way li:hover a{
+  font-size: 17px;
 }
 .form-way li{
   margin: 29px 0 19px 0;
 }
 .form-way li:nth-child(1) a{
-  background: var(--primary);
-  color: var(--white);
   border-radius: 4px 0 0  4px;
 }
 .form-way li:nth-child(2) a{
-  background: var(--lightGray);
-  color: var(--primary);
   border-radius: 0 4px 4px 0;
 }
-.main-content form{
+.form-way li.way-active a{
+  background: var(--primary);
+  color: var(--white);
+ 
+}
+.main-content form.form-active{
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   gap: 30px;
   padding-bottom: 24px;
 }
+form .form-member{
+  display: flex;
+  gap: 30px;
+}
+.main-content form{
+  display: none;
+}
 .main-content .input-field{
   border-bottom: 3px solid var(--darkGray);
- 
 }
-
 .main-content i {
   width: 15px;
   height: 22px;
   padding : 20px 20px 0 0;
   color: var(--darkGray);
 }
-.main-content input{
+.main-content form input{
   width: 162px;
   padding: 20px 0 0 20px;
   line-height: 45px;
-
   outline: none;
   color: var(--darkGray);
 
@@ -532,7 +542,6 @@ footer{
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
-  cursor: pointer;
 }
 .footer-wrap .company dt{
   margin-bottom: 34px;
@@ -554,7 +563,12 @@ footer{
   width: 222px;
   display: flex; 
   flex-wrap: wrap;
-  
+}
+.footer-wrap dd a{
+  color: var(--gray);
+}
+.footer-wrap dd:hover a {
+  color: var(--lightGray);
 }
 .footer-wrap .sns dt{
   width: 212px;

@@ -6,21 +6,26 @@ const slidesCount = slides.length;
 const prevBtn = slideWrapper.querySelector('.prev');
 const nextBtn = slideWrapper.querySelector('.next');
 let slideTimer;
+const formWay = document.querySelectorAll('.form-way li');
+const formTab = document.querySelectorAll('.reservation li a');
+const formContent = document.querySelectorAll('.main-content form');
 
+// 슬라이드 복사
 for(let i = 0; i<slidesCount;i++){
-  let cloneSlide = slides[i].cloneNode(true); //복사
-  cloneSlide.classList.add('clone'); //복사 클래스 추가
-  slideContainer.appendChild(cloneSlide); //ul의 내용의 뒤에 추가
+  let cloneSlide = slides[i].cloneNode(true); 
+  cloneSlide.classList.add('clone'); 
+  slideContainer.appendChild(cloneSlide); 
 }
 for(let i = slidesCount -1; i >=0 ; i--){
-  let cloneSlide = slides[i].cloneNode(true); //복사
-  cloneSlide.classList.add('clone'); //복사 클래스 추가
-  slideContainer.prepend(cloneSlide); //ul의 내용의 앞에 추가
+  let cloneSlide = slides[i].cloneNode(true); 
+  cloneSlide.classList.add('clone'); 
+  slideContainer.prepend(cloneSlide); 
 }
 
 let allslides = slideContainer.querySelectorAll('li'); //복사본 포함 전체 슬라이드
 let allslidesCount = allslides.length;
 
+//화면 크기 변동시 슬라이드 크기 재지정
 function setLayout(){
  let slideWidth = slideWrapper.offsetWidth;
  let slidesContainerWidth = slideWidth * slidesCount;
@@ -31,7 +36,6 @@ setLayout();
 window.addEventListener('resize',()=>{
   setLayout();
 })
-console.log(allslides[0]);
 
 //연속 클릭 방지
 function debounce(callback, time){
@@ -41,19 +45,17 @@ function debounce(callback, time){
       callback(e);
       slideTrigger = false;
       setTimeout(()=>{
-        slideTrigger = true;
-        console.log(slideTrigger);
+        slideTrigger = true
       }, time);
     }
-    console.log(slideTrigger);
   }
 }
-
+// 슬라이드 배치
 allslides.forEach((slide, idx)=>{
   slide.style.left = `${idx * 100}%`;
 })
-console.log(slides[0]);
 
+// 슬라이드 이동
 function showSlide(num){
   slideContainer.style.left =`${-num*100}%`;
   currentIdx = num;
@@ -77,30 +79,63 @@ function showSlide(num){
     setTimeout(()=>{
       slideContainer.classList.add('animated');
     },500);
-    
   }
-
 }
 showSlide(0);
 
+// 버튼 클릭
 prevBtn.addEventListener('click', debounce(()=>{
   showSlide(currentIdx - 1);
 }, 500));
-
 nextBtn.addEventListener('click', debounce(()=>{
   showSlide(currentIdx + 1);
 }, 500));
 
+// 자동 슬라이드 함수
 function autoSlide(){
   slideTimer = setInterval(()=>{
-  showSlide((currentIdx + 1)%slidesCount);
+  showSlide(currentIdx + 1);
   },3000);
 }
 autoSlide();
 
+// 마우스가 들어오면 자동 슬라이드 정지
 slideWrapper.addEventListener('mouseenter', ()=>{
   clearInterval(slideTimer);
 });
 slideWrapper.addEventListener('mouseleave',()=>{
   autoSlide();
 });
+// 왕복 편도 색상 변환
+function formWayChange(){
+  for(let way of formWay){
+    way.addEventListener('click',(e)=>{
+      e.preventDefault();
+      for(let item of formWay){
+        item.classList.remove('way-active');
+      }
+      way.classList.add('way-active');
+    });
+    
+  }
+}
+formWayChange();
+
+function formChange(){
+  for(let forms of formTab){
+    forms.addEventListener('click', (e)=>{
+      e.preventDefault();
+      for(let form of formTab){
+        form.classList.remove('form-active');
+      }
+      forms.classList.add('form-active');
+      for(let fc of formContent){
+        fc.classList.remove('form-active');
+      }
+      let target = forms.getAttribute('href');
+      console.log(target);
+      document.querySelector(target).classList.add('form-active');
+    });
+  }
+}
+formChange();
