@@ -188,6 +188,7 @@ function loadCalendar(){
     for(let i = 0; i < firstDateIdx; i++){
       let div = document.createElement('div');
       days.appendChild(div);
+      div.style.visibility = 'hidden';
     }
     for(let i = 1; i<= numberOfDays; i++){
       let currentData = new Date(year, month, i);   // 현재 년월의 i 번째의 날 값 저장
@@ -213,8 +214,12 @@ function loadCalendar(){
     for(let day of dayElement){
       day.addEventListener('click', ()=>{
         let selectedDate = day.dataset.date;
-        selected.innerHTML = `선택일 : ${selectedDate}`;
-        selected.style.display = 'block';
+        console.log(selectedDate);
+        
+          selected.innerHTML = `선택일 : ${selectedDate}`;
+          selected.style.display = 'block';
+        
+        
         /*for(let ib of inputBox){
           ib.querySelector('#input-date').value = selectedDate; 
         console.log(ib.querySelector('#input-date').value);
@@ -222,6 +227,32 @@ function loadCalendar(){
       })
     }
   }
+  calNext.addEventListener('click', ()=>{
+    days.innerHTML = '';
+    selected.innerHTML = '';
+    if(month > 11){
+      month = 0;
+      year += 1;
+    }
+    month += 1;
+    today.setMonth(month);
+    displayCalendar();
+    displayHeader();
+  });
+  
+  calPrev.addEventListener('click', ()=>{
+    days.innerHTML = '';
+    selected.innerHTML = '';
+    if(month < 0){
+      month = 11;
+      year -= 1;
+    }
+    month -= 1;
+    today.setMonth(month);
+    displayCalendar();
+    displayHeader();
+  });
+  
 }
 loadCalendar();
 
@@ -236,3 +267,4 @@ function inputFormClicked(){
   }
 }
 inputFormClicked();
+
