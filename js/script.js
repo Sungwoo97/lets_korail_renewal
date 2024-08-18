@@ -12,7 +12,8 @@ const formContent = document.querySelectorAll('.main-content form');
 const contentBox = document.querySelector('.content-box');
 const contents = document.querySelectorAll('.content-box ul > li');
 const contentBoxOST = contentBox.offsetTop-600;
-
+const inputBox = document.querySelectorAll('.input-field');
+const inputClickedOn = document.querySelector('.input-container');
 
 
 // 슬라이드 복사
@@ -142,7 +143,7 @@ function formChange(){
   }
 }
 formChange();
-
+// 일정 스크롤 내리면 content box가 올라옴 
 function scrollEvent(){
   window.addEventListener('scroll', ()=>{
     let scrollAmt = window.scrollY;
@@ -157,3 +158,81 @@ function scrollEvent(){
   });
 }
 scrollEvent();
+
+// 달력 출력 함수
+function loadCalendar(){
+  const calendar = document.querySelector('.calendar');
+  const calPrev = calendar.querySelector('.cal-left');
+  const calNext = calendar.querySelector('.cal-right');
+  const display = calendar.querySelector('.cal-header-display');
+  const days = calendar.querySelector('.cal-days');
+  const selected = calendar.querySelector('.cal-selected');
+  const today = new Date();
+
+  let year = today.getFullYear();
+  let month = today.getMonth();
+  // 헤더의 날짜 출력 함수
+  function displayHeader(){       
+    let headerDate = today.toLocaleString('ko-KR',{
+      month: 'long', year:'numeric', timeZone: 'Asia/Seoul'
+    });
+    display.innerHTML = headerDate;
+  }
+  displayHeader();
+  function displayCalendar(){
+    const firstDay = new Date(year, month, 1); // 현재 년 월의 첫째날
+    const firstDateIdx= firstDay.getDay(); // 현재 년 월의 첫째날이 주의 몇번째에 있는지 idx 값을 가져옴
+    const lastDay = new Date(year, month + 1, 0); // 현재 년의 다음달의 전날 => 현재 년 월의 마지막 날
+    const numberOfDays = lastDay.getDate(); // 현재 년 월의 마지막 '날'의 값을 가져옴
+    // 빈 div 생성, 달력 첫째날의 앞을 생성 
+    for(let i = 0; i < firstDateIdx; i++){
+      let div = document.createElement('div');
+      days.appendChild(div);
+    }
+    for(let i = 1; i<= numberOfDays; i++){
+      let currentData = new Date(year, month, i);   // 현재 년월의 i 번째의 날 값 저장
+      let div = document.createElement('div');
+      div.innerHTML += i;
+      days.appendChild(div);   
+      // 사용자 속성에 현재 년 월 일 요일 값 저장
+      div.dataset.date = currentData.toLocaleString('ko-KR', 
+        {year:'numeric', month:'long', day:'numeric', weekday:'long', timeZone: 'Asia/Seoul' });
+      // 현재 년월일과 같은지 하나하나 비교
+      if(currentData.getFullYear() === new Date().getFullYear() && 
+      currentData.getMonth() === new Date().getMonth() &&
+      currentData.getDate() === new Date().getDate()){
+        div.classList.add('current');
+      }
+    }
+    displaySelected();
+  }
+  displayCalendar()
+  // 선택한 날짜를 하단에 표시해 주는 함수
+  function displaySelected(){
+    const dayElement = document.querySelectorAll('.cal-days div');
+    for(let day of dayElement){
+      day.addEventListener('click', ()=>{
+        let selectedDate = day.dataset.date;
+        selected.innerHTML = `선택일 : ${selectedDate}`;
+        selected.style.display = 'block';
+        /*for(let ib of inputBox){
+          ib.querySelector('#input-date').value = selectedDate; 
+        console.log(ib.querySelector('#input-date').value);
+        }*/
+      })
+    }
+  }
+}
+loadCalendar();
+
+function inputFormClicked(){
+  for(let ib of inputBox){
+    ib.addEventListener('click', ()=>{
+      for(let box of inputBox){
+        box.querySelector('.input-container').classList.add('hidden');
+      }
+      ib.querySelector('.input-container').classList.remove('hidden');
+    })
+  }
+}
+inputFormClicked();
