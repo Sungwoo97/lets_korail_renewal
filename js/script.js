@@ -14,6 +14,9 @@ const contents = document.querySelectorAll('.content-box ul > li');
 const contentBoxOST = contentBox.offsetTop-600;
 const inputBox = document.querySelectorAll('.input-field');
 const inputClickedOn = document.querySelector('.input-container');
+const servicesAfter = document.querySelectorAll('.services > ul > li');
+
+const servicesText = document.querySelectorAll('.services-box > ul > li');
 
 
 // 슬라이드 복사
@@ -250,6 +253,7 @@ function loadCalendar(){
 }
 loadCalendar();
 
+// Form의 input 클릭 시 입력창을 띄워주는 함수
 function inputFormClicked(){
   for(let ib of inputBox){
     ib.addEventListener('click', ()=>{
@@ -262,3 +266,11 @@ function inputFormClicked(){
 }
 inputFormClicked();
 
+//after content에 값을 넘겨주는 함수
+function servicesDataset(){
+  for(let sd of servicesText){
+    sd.dataset.text = sd.innerText;
+    let servicesData = sd.dataset.text;
+    sd.setAttribute('data-text', servicesData );
+    }
+}servicesDataset();

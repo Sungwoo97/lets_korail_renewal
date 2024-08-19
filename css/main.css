@@ -607,9 +607,9 @@ form .form-member{
   height: 48px;
 }
 
-.services ul li:hover:after{
+.services ul li:after{
   position: absolute;
-  content: '';
+  content: attr(data-text);
   width: 165px;
   height: 40px;
   background: rgba(255,255,255,.5);
@@ -617,6 +617,10 @@ form .form-member{
   text-align: center;
   line-height: 40px;
   border-radius: 5px;
+  display: none;
+}
+.services ul li:hover:after{
+  display: block;
 }
 .services ul li:hover::before{
   content: '';
