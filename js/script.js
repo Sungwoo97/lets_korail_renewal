@@ -166,7 +166,7 @@ function loadCalendar(){
   const calNext = calendar.querySelector('.cal-right');
   const display = calendar.querySelector('.cal-header-display');
   const days = calendar.querySelector('.cal-days');
-  const selected = calendar.querySelector('.cal-selected');
+  //const selected = calendar.querySelector('.cal-selected');
   const today = new Date();
 
   let year = today.getFullYear();
@@ -197,7 +197,7 @@ function loadCalendar(){
       days.appendChild(div);   
       // 사용자 속성에 현재 년 월 일 요일 값 저장
       div.dataset.date = currentData.toLocaleString('ko-KR', 
-        {year:'numeric', month:'long', day:'numeric', weekday:'long', timeZone: 'Asia/Seoul' });
+        {year:'numeric', month:'long', day:'numeric',  timeZone: 'Asia/Seoul' });
       // 현재 년월일과 같은지 하나하나 비교
       if(currentData.getFullYear() === new Date().getFullYear() && 
       currentData.getMonth() === new Date().getMonth() &&
@@ -214,22 +214,16 @@ function loadCalendar(){
     for(let day of dayElement){
       day.addEventListener('click', ()=>{
         let selectedDate = day.dataset.date;
-        console.log(selectedDate);
+          /*  selected.innerHTML = `선택일 : ${selectedDate}`;
+            selected.style.display = 'block' */       
+        document.getElementById('input-date').value = selectedDate;
         
-          selected.innerHTML = `선택일 : ${selectedDate}`;
-          selected.style.display = 'block';
-        
-        
-        /*for(let ib of inputBox){
-          ib.querySelector('#input-date').value = selectedDate; 
-        console.log(ib.querySelector('#input-date').value);
-        }*/
       })
     }
   }
   calNext.addEventListener('click', ()=>{
     days.innerHTML = '';
-    selected.innerHTML = '';
+    //selected.innerHTML = '';
     if(month > 11){
       month = 0;
       year += 1;
@@ -242,7 +236,7 @@ function loadCalendar(){
   
   calPrev.addEventListener('click', ()=>{
     days.innerHTML = '';
-    selected.innerHTML = '';
+    //selected.innerHTML = '';
     if(month < 0){
       month = 11;
       year -= 1;
