@@ -17,7 +17,6 @@ const inputClickedOn = document.querySelector('.input-container');
 const servicesAfter = document.querySelectorAll('.services > ul > li');
 const servicesText = document.querySelectorAll('.services-box > ul > li');
 const station = document.querySelectorAll('.station');
-
 const searchInput = document.querySelectorAll('.station-search');
 
 
@@ -278,7 +277,7 @@ function servicesDataset(){
   for(let sd of servicesText){
     sd.dataset.text = sd.innerText;
     let servicesData = sd.dataset.text;
-    sd.setAttribute('data-text', servicesData );
+    sd.setAttribute('data-text', servicesData);
     }
 }
 servicesDataset();
@@ -304,24 +303,31 @@ function searchStation(){
         name:sta.역이름
       });
     }
-    console.log(stationNameArr);
     for(let sta of station){
       sta.innerHTML = stationHTML;
     }
   });
+
+  //input에 값이 입력 되면 실행되는 이벤트
   for(let si of searchInput){
     si.addEventListener('input', (e)=>{
+      const stationList = document.querySelectorAll('.station > li');
       let keywords = e.target.value;
       let filteredArr = stationNameArr.filter(stafilter => stafilter.name.includes(keywords));
-      const stationList = document.querySelectorAll('.station > li');
-      console.log(stationList);
+      // 모든 요소에 d-none을 추가해서 화면에서 제거
       for(let sta of stationList){
         sta.classList.add('d-none');
+        sta.dataset.start = sta.innerHTML;
+        let stationStart = sta.dataset.start; 
+        //dataset을 input value에 넣어줘야함
       }
+      
+      //선택한 요소의 부모를 찾고 그 부모의 자식 중의 li 요소를 찾은 후 d-none을 제거 
       for(let fil of filteredArr){
-        stationList[fil.id].classList.remove('d-none');
+        e.target.parentElement.querySelectorAll('li')[fil.id].classList.remove('d-none');
       }
     });
+    
   }
 }
 searchStation();
