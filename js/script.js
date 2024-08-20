@@ -71,7 +71,6 @@ allslides.forEach((slide, idx)=>{
 function showSlide(num){
   slideContainer.style.left =`${-num*100}%`;
   currentIdx = num;
-  console.log(currentIdx);
   if(currentIdx === slidesCount * 2 - 1 ){
     setTimeout(()=>{
       slideContainer.classList.remove('animated');
@@ -297,7 +296,7 @@ function searchStation(){
     let stationHTML='<h3>역 검색</h3>';
 
     for(let sta of stationData){
-      stationHTML += `<li>${sta.역이름}</li>`;
+      stationHTML += `<li><a href="#" data-name="${sta.역이름}">${sta.역이름}</a></li>`;
       stationNameArr.push({
         id:counter++,
         name:sta.역이름
@@ -306,8 +305,9 @@ function searchStation(){
     for(let sta of station){
       sta.innerHTML = stationHTML;
     }
+    //setupStationClickEvent();
   });
-
+  //stationDataset();
   //input에 값이 입력 되면 실행되는 이벤트
   for(let si of searchInput){
     si.addEventListener('input', (e)=>{
@@ -317,11 +317,7 @@ function searchStation(){
       // 모든 요소에 d-none을 추가해서 화면에서 제거
       for(let sta of stationList){
         sta.classList.add('d-none');
-        sta.dataset.start = sta.innerHTML;
-        let stationStart = sta.dataset.start; 
-        //dataset을 input value에 넣어줘야함
       }
-      
       //선택한 요소의 부모를 찾고 그 부모의 자식 중의 li 요소를 찾은 후 d-none을 제거 
       for(let fil of filteredArr){
         e.target.parentElement.querySelectorAll('li')[fil.id].classList.remove('d-none');
@@ -329,5 +325,28 @@ function searchStation(){
     });
     
   }
+}
+
+
+function setupStationClickEvent() {
+  const stationList = document.querySelectorAll('.station > li a'); // 모든 역 링크를 선택
+  const stationInput = document.querySelectorAll('.station-search');
+
+  stationList.forEach((sta, idx) => {
+    sta.addEventListener('click', (e) => {
+      e.preventDefault();  // 링크 기본 동작 방지
+      const stationName = e.target.getAttribute('data-name');
+      stationInput.forEach((input, idx)=>{
+        console.log(input.value);
+        input.classList.remove('on');
+      })
+      searchInput[idx].classList.add('on');
+       
+     
+      // if(stationInput.classList.contains('on')){
+      //   input.value = stationName;  // input 필드에 역 이름 설정
+      // }
+    });
+  });
 }
 searchStation();
