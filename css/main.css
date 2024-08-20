@@ -362,6 +362,16 @@ form .form-member{
   background: var(--white);
   border-radius: 20px;
 }
+.main-content .input-field .field > div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+.main-content .input-field .field > div h3{
+  font-size: 20px;
+  font-weight: bold;
+}
 /* Calendar */
 .main-content .input-field .input-container{
   position: absolute;
@@ -450,9 +460,7 @@ form .form-member{
 
 
 /* input 클릭 이벤트 */
-.main-content .input-field:hover{
-  border-bottom: 3px solid var(--primary);
-}
+
 .main-content button:hover{
   background: var(--gray);
 }
