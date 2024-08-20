@@ -259,7 +259,9 @@ function inputFormClicked(){
     ib.addEventListener('click', ()=>{
       for(let box of inputBox){
         box.querySelector('.input-container').classList.add('hidden');
+        box.style.borderColor = 'var(--darkGray)';
       }
+      ib.style.borderColor = 'var(--primary)';
       ib.querySelector('.input-container').classList.remove('hidden');
     })
   }
