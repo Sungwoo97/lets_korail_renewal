@@ -163,47 +163,34 @@
           <li class="way-active"><a href="">왕복</a></li>
           <li><a href="">편도</a></li>
         </ul>
-        <form class="form-active" id="ticket" action="">
+        <form class="form-active" id="ticket" action="#">
           <div class="input-field">
-            <label for="" class="hidden">출발역</label>
-            <input type="text" placeholder="출발역">
+            <label for="input-start" class="hidden">출발역</label>
+            <input type="text" class="station-search" id="input-start" placeholder="출발역">
             <i class="fa-solid fa-location-dot"></i>
             <div class="input-container hidden">
               <div class="field">
-                <div class="station">
-                  <h3>출발역 검색</h3>
-                  <p>서울</p>
-                  <p>부산</p>
-                  <p>광주</p>
-                  <p>대구</p>
-                  <p>대전</p>
-                  <p>용산</p>
-                </div>
+                <ul class="station">
+
+
+                </ul>
               </div>
             </div>
           </div>
           <div class="input-field">
-            <label for="" class="hidden">도착역</label>
-            <input type="text" placeholder="도착역">
+            <label for="input-end" class="hidden">도착역</label>
+            <input type="text" class="station-search" id="input-end" placeholder="도착역">
             <i class="fa-solid fa-location-dot"></i>
             <div class="input-container hidden">
               <div class="field">
-                <div class="station">
-                  <h3>도착역 검색</h3>
-                  <p>서울</p>
-                  <p>부산</p>
-                  <p>광주</p>
-                  <p>대구</p>
-                  <p>대전</p>
-                  <p>용산</p>
-                  <p>춘천</p>
-                  <p>강릉</p>
-                </div>
+                <ul class="station">
+              
+                </ul>
               </div>
             </div>
           </div>
           <div class="input-field">
-            <label for="" class="hidden">탑승일</label>
+            <label for="input-date" class="hidden">탑승일</label>
             <input type="text" placeholder="탑승일" id="input-date" readonly>
             <i class="fa-solid fa-calendar-days"></i>
             <div class="input-container hidden">
@@ -232,28 +219,28 @@
             </div>
           </div>
           <div class="input-field">
-            <label for="" class="hidden">탑승열차</label>
-            <input type="text" placeholder="탑승열차">
+            <label for="input-train" class="hidden">탑승열차</label>
+            <input type="text" id="input-train" placeholder="탑승열차">
             <i class="fa-solid fa-train-subway"></i>
             <div class="input-container hidden">
               <div class="field">
-                <div class="train">
-                  <h3>열차 검색</h3>
-                  <p>KTX</p>
-                  <p>ITX-청춘</p>
-                  <p>KTX-청룡</p>
-                  <p>무궁화</p>
-                </div>
+                <ul class="train">
+                  <!-- <h3>열차 검색</h3> -->
+                  <li>KTX</li>
+                  <li>ITX-청춘</li>
+                  <li>KTX-청룡</li>
+                  <li>무궁화</li>
+                </ul>
               </div>
             </div>
           </div>
           <button>조회</button>
         </form>
-        <form class="" id="check" action="">
+        <form class="" id="check" action="#">
           <div class="form-member">
             <div class="input-field">
-              <label for="" class="hidden">회원등록번호</label>
-              <input type="text" placeholder="회원등록번호">
+              <label for="input-member" class="hidden">회원등록번호</label>
+              <input type="text" id="input-member" placeholder="회원등록번호">
               <i class="fa-solid fa-train-subway"></i>
               <div class="input-container hidden">
                 <div class="field">
@@ -262,8 +249,8 @@
               </div>
             </div>
             <div class="input-field">
-              <label for="" class="hidden">회원아이디</label>
-              <input type="id" placeholder="아이디">
+              <label for="input-id" class="hidden">회원아이디</label>
+              <input type="text" id="input-id" placeholder="아이디">
               <i class="fa-solid fa-train-subway"></i>
               <div class="input-container hidden">
                 <div class="field">
@@ -272,8 +259,8 @@
               </div>
             </div>
             <div class="input-field">
-              <label for="" class="hidden">회원비밀번호</label>
-              <input type="password" placeholder="비밀번호">
+              <label for="input-password" class="hidden">회원비밀번호</label>
+              <input type="password" id="input-password" placeholder="비밀번호">
               <i class="fa-solid fa-train-subway"></i>
               <div class="input-container hidden">
                 <div class="field">
@@ -404,7 +391,7 @@
           <dd><i class="fa-brands fa-x-twitter"></i></dd>
         </dl>
       </div>
-    <p>COPYRIGHT &copy KOREA RAILROAD. ALL RIGHTS RESERVED.</p>
+    <p>COPYRIGHT &copy;KOREA RAILROAD. ALL RIGHTS RESERVED.</p>
   </footer>
 </body>
 </html>
