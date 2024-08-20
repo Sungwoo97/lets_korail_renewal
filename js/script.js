@@ -15,8 +15,12 @@ const contentBoxOST = contentBox.offsetTop-600;
 const inputBox = document.querySelectorAll('.input-field');
 const inputClickedOn = document.querySelector('.input-container');
 const servicesAfter = document.querySelectorAll('.services > ul > li');
-
 const servicesText = document.querySelectorAll('.services-box > ul > li');
+const station = document.querySelectorAll('.station');
+
+const searchInput = document.querySelectorAll('.station-search');
+
+
 
 
 // 슬라이드 복사
@@ -68,6 +72,7 @@ allslides.forEach((slide, idx)=>{
 function showSlide(num){
   slideContainer.style.left =`${-num*100}%`;
   currentIdx = num;
+  console.log(currentIdx);
   if(currentIdx === slidesCount * 2 - 1 ){
     setTimeout(()=>{
       slideContainer.classList.remove('animated');
@@ -275,4 +280,48 @@ function servicesDataset(){
     let servicesData = sd.dataset.text;
     sd.setAttribute('data-text', servicesData );
     }
-}servicesDataset();
+}
+servicesDataset();
+
+function cookies(){
+
+}
+// 역 검색 함수
+function searchStation(){
+  const stationNameArr = [];
+  let counter = 0;
+  let stationQueryUrl = `https://api.odcloud.kr/api/15067652/v1/uddi:3c470b9f-ecd9-47a1-ad7c-dab33f1cfe71?page=1&perPage=213&serviceKey=jTQEdaAGysNAd0Yt5IauyO%2BVLmyfRGQKcPhnH%2BYxydyiVXCEcJg1RpDcrb2AyNx4y6UvlyfLXlGdDfiK7LHyzQ%3D%3D`;
+  fetch(stationQueryUrl)
+  .then(res=> res.json())
+  .then(data => {
+    let stationData = data.data;
+    let stationHTML='<h3>역 검색</h3>';
+
+    for(let sta of stationData){
+      stationHTML += `<li>${sta.역이름}</li>`;
+      stationNameArr.push({
+        id:counter++,
+        name:sta.역이름
+      });
+    }
+    console.log(stationNameArr);
+    for(let sta of station){
+      sta.innerHTML = stationHTML;
+    }
+  });
+  for(let si of searchInput){
+    si.addEventListener('input', (e)=>{
+      let keywords = e.target.value;
+      let filteredArr = stationNameArr.filter(stafilter => stafilter.name.includes(keywords));
+      const stationList = document.querySelectorAll('.station > li');
+      console.log(stationList);
+      for(let sta of stationList){
+        sta.classList.add('d-none');
+      }
+      for(let fil of filteredArr){
+        stationList[fil.id].classList.remove('d-none');
+      }
+    });
+  }
+}
+searchStation();
