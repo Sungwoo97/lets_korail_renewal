@@ -39,6 +39,9 @@
   height: 0;
   overflow: hidden;
 }
+.d-none {
+  display: none;
+}
 /* Font */
 body{
   font-family: "Noto Sans KR", sans-serif;
@@ -182,6 +185,7 @@ header .main-menu li:hover ul ul{
   display: flex;
   flex-direction: column;
   padding-top: 32px;
+
 }
 
 header .main-menu ul ul li{
@@ -206,7 +210,7 @@ header .main-menu ul ul li{
 } 
 .slide-container.animated{
   left:0;
-  transition: .5s;
+  transition: left .5s;
 }
 .slide-container>li{
   position: absolute;
@@ -242,7 +246,9 @@ header .main-menu ul ul li{
 } 
 /* Form */
 .main-content{
-  box-shadow: 2px 2px 3px rgba(0, 0 , 0, .25);
+  box-shadow: 2px 2px 3px rgba(0, 0 , 0, .25),
+  0 -2px 3px rgba(0, 0 , 0, .25)
+  ;
   background: var(--white);
   width: 100%;
   height: 100%;
@@ -269,6 +275,7 @@ header .main-menu ul ul li{
   background: var(--white);
   color: var(--primary);
   transition: .3s;
+  box-shadow: 0 0 2px rgba(0, 0 , 0, .25);
 }
 .reservation li:hover a{
   font-size: 20px;
@@ -324,10 +331,11 @@ form .form-member{
   gap: 30px;
 }
 .main-content form{
-  display: none;
-  
+  display: none; 
 }
-.main-content form > div:nth-child(3){position: relative;}
+.main-content form > div:nth-child(3){
+  position: relative;
+}
 .main-content .input-field{
   border-bottom: 3px solid var(--darkGray);
 }
@@ -357,20 +365,31 @@ form .form-member{
   margin-left: 140px;
 }
 .main-content .input-field .field{
-  width: 370px;
-  height: 400px;
+  width: 182px;
+  height: 200px;
   background: var(--white);
-  border-radius: 20px;
+  overflow-x: auto;
+  padding: 20px;
 }
-.main-content .input-field .field > div{
+
+.main-content .input-field .field > ul{
+
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+
 }
-.main-content .input-field .field > div h3{
+.input-field .field > ul li{
+  width: 100%;
+  border-bottom: 1px solid transparent;
+}
+.input-field .field > ul li:hover{
+  border-color: var(--primary);
+}
+.main-content .input-field .field > ul h3{
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 /* Calendar */
 .main-content .input-field .input-container{
@@ -378,9 +397,9 @@ form .form-member{
   display: flex;
   justify-content: center;
   align-items: center;
-  top: calc(100% + 32px);
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(100% + 3px);
+  left: 0;
+  /* transform: translateX(-50%); */
   border-radius: 20px;
   box-shadow: 0px 100px 80px 0px rgba(0, 0, 0, 0.02), 
       0px 64.815px 46.852px 0px rgba(0, 0, 0, 0.02), 
@@ -620,7 +639,7 @@ form .form-member{
   content: attr(data-text);
   width: 165px;
   height: 40px;
-  background: rgba(255,255,255,.5);
+  background: rgba(255,255,255,1);
   top: calc(100% + 15px);
   text-align: center;
   line-height: 40px;
@@ -636,7 +655,7 @@ form .form-member{
   height: 0;
   border-style: solid;
   border-width: 15px;
-  border-color: transparent transparent rgba(255,255,255,.5) transparent;
+  border-color: transparent transparent rgba(255,255,255,1) transparent;
   position: absolute;
   top: calc(100% - 15px);
 }
