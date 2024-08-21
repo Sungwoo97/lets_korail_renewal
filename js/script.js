@@ -258,19 +258,21 @@ function loadCalendar(){
 loadCalendar();
 
 // Form의 input 클릭 시 입력창을 띄워주는 함수
-function inputFormClicked(){
+
   for(let ib of inputBox){
+    ib.querySelector('.input-container').style.display = 'none'
     ib.addEventListener('click', ()=>{
       for(let box of inputBox){
-        box.querySelector('.input-container').classList.add('hidden');
+        box.querySelector('.input-container').style.display = 'none';
         box.style.borderColor = 'var(--darkGray)';
       }
+      ib.querySelector('.input-container').style.display = 'block';
       ib.style.borderColor = 'var(--primary)';
-      ib.querySelector('.input-container').classList.remove('hidden');
+   
     })
   }
-}
-inputFormClicked();
+
+
 
 //after content에 값을 넘겨주는 함수
 function dataset(dataset){
@@ -314,32 +316,41 @@ function searchStation(){
     for(let tr of trainArr){
      trainHTML += `<li><a href="#" >${tr}</a></li>`;
       trainNameArr.push({
-       id:tc++,
-        name:tr
+      id:tc++,
+      name:tr
     });
     train.innerHTML = trainHTML;
   }
   inputEvent('.station > li', stationNameArr);
   inputEvent('.train > li', trainNameArr);
 }
+searchStation();
 //hidden 이 없는 station li 를 클릭한다면 dataset 의 값을 input value에 출력
 function setupStationClickEvent(name) {
-
   const eventName = document.querySelectorAll(name); // 모든 역 링크를 선택
   dataset(eventName);
   eventName.forEach((sta, idx) => {
     sta.addEventListener('click', (e) => {
       e.preventDefault();  // 링크 기본 동작 방지
       const getName = e.target.getAttribute('data-name');
-      let fourParent = e.target.parentNode.parentNode.parentNode.parentNode;    
+      let fourParent = e.target.closest('.input-container');    
       let targetParent = fourParent.parentNode.querySelector('input');
-      if (!fourParent.classList.contains('hidden')) {
-        targetParent.value = getName;
-      } 
+      targetParent.value = getName;
+      console.log(fourParent);
+      fourParent.style.display = 'none';
+      // if (!fourParent.classList.contains('hidden')) {
+      // } 
+      // if(fourParent.style.display === ''){
+      //   console.log('null입니다');
+        
+      //   fourParent.classList.remove('hidden');
+      // }else{
+      //   fourParent.style.display = 'block';
+      // }
     });
   });
 }
-searchStation();
+
 //input에 값이 입력 되면 실행되는 이벤트
 function inputEvent(name, filterArr){
   for(let si of searchInput){

@@ -38,6 +38,7 @@
   width: 0;
   height: 0;
   overflow: hidden;
+  display: none;
 }
 .d-none {
   display: none;
@@ -451,6 +452,9 @@ form .form-member{
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+.input-container .field{
+
 }
 /* Calendar */
 .main-content .input-field .input-container{
