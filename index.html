@@ -10,6 +10,28 @@
   <script defer src="js/script.js"></script>
 </head>
 <body>
+  <div class="popup">
+    <div class="popup-header">
+      <img src="images/korail_logo.png" alt="팝업창 로고">
+      <p>Let's Korail Renewal Page</p>
+    </div>
+    <div class="popup-main">
+      <h2>본 사이트는 구직용 포트폴리오 웹사이트입니다
+      <br>
+      실제로 운영되는 사이트가 아닙니다</h2>
+      <hr>
+      <p>프로젝트명 : Let's Korail Renewal 웹사이트</p>
+      <p>제작기간 : 2024년 7월 22일 ~ 2024년 8월 22일</p>
+      <p>개발환경 : HTML5, CSS, Javascript</p>
+      <hr>
+      <p>제작자 : 남성우</p>
+    </div>
+    <div class="popup-footer">
+      <label for="check">오늘 하루 안보기</label>
+      <input type="checkbox" id="check">
+    </div>
+    <button>닫기</button>
+  </div>
   <header>
     <div class="container">
       <ul class="top-nav">
@@ -220,16 +242,17 @@
           </div>
           <div class="input-field">
             <label for="input-train" class="hidden">탑승열차</label>
-            <input type="text" id="input-train" placeholder="탑승열차">
+            <input type="text" class="station-search" id="input-train" placeholder="탑승열차">
             <i class="fa-solid fa-train-subway"></i>
             <div class="input-container hidden">
               <div class="field">
                 <ul class="train">
                   <!-- <h3>열차 검색</h3> -->
-                  <li>KTX</li>
-                  <li>ITX-청춘</li>
-                  <li>KTX-청룡</li>
-                  <li>무궁화</li>
+                  <li><a href="#">KTX</a></li>
+                  <li><a href="#">KTX-청룡</a></li>
+                  <li><a href="#">ITX-청춘</a></li>
+                  <li><a href="#">ITX-이음</a></li>
+                  <li><a href="#">무궁화</a></li>
                 </ul>
               </div>
             </div>
@@ -241,7 +264,7 @@
             <div class="input-field">
               <label for="input-member" class="hidden">회원등록번호</label>
               <input type="text" id="input-member" placeholder="회원등록번호">
-              <i class="fa-solid fa-train-subway"></i>
+              <i class="fa-solid fa-user"></i>
               <div class="input-container hidden">
                 <div class="field">
                   
@@ -251,7 +274,7 @@
             <div class="input-field">
               <label for="input-id" class="hidden">회원아이디</label>
               <input type="text" id="input-id" placeholder="아이디">
-              <i class="fa-solid fa-train-subway"></i>
+              <i class="fa-solid fa-user"></i>
               <div class="input-container hidden">
                 <div class="field">
                   
@@ -261,7 +284,7 @@
             <div class="input-field">
               <label for="input-password" class="hidden">회원비밀번호</label>
               <input type="password" id="input-password" placeholder="비밀번호">
-              <i class="fa-solid fa-train-subway"></i>
+              <i class="fa-solid fa-lock"></i>
               <div class="input-container hidden">
                 <div class="field">
                   
