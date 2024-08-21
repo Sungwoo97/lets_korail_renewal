@@ -132,6 +132,7 @@ function formWayChange(){
   }
 }
 formWayChange();
+
 // 승차권 예약 / 예약 조회 탭 메뉴
 function formChange(){
   for(let forms of formTab){
@@ -150,6 +151,7 @@ function formChange(){
   }
 }
 formChange();
+
 // 일정 스크롤 내리면 content box가 올라옴 
 function scrollEvent(){
   window.addEventListener('scroll', ()=>{
@@ -215,6 +217,7 @@ function loadCalendar(){
     displaySelected();
   }
   displayCalendar()
+
   // 선택한 날짜를 하단에 표시해 주는 함수
   function displaySelected(){
     const dayElement = document.querySelectorAll('.cal-days div');
@@ -257,23 +260,6 @@ function loadCalendar(){
 }
 loadCalendar();
 
-// Form의 input 클릭 시 입력창을 띄워주는 함수
-
-  for(let ib of inputBox){
-    ib.querySelector('.input-container').style.display = 'none'
-    ib.addEventListener('click', ()=>{
-      for(let box of inputBox){
-        box.querySelector('.input-container').style.display = 'none';
-        box.style.borderColor = 'var(--darkGray)';
-      }
-      ib.querySelector('.input-container').style.display = 'block';
-      ib.style.borderColor = 'var(--primary)';
-   
-    })
-  }
-
-
-
 //after content에 값을 넘겨주는 함수
 function dataset(dataset){
   for(let sd of dataset){
@@ -305,10 +291,10 @@ function searchStation(){
     for(let sta of station){
       sta.innerHTML = stationHTML;
     }
-    
     setupStationClickEvent('.station > li a');
     setupStationClickEvent('.train > li a');
   });
+  
   let trainArr = ['KTX', 'KTX-청룡', 'ITX-청춘', 'ITX-이음', '무궁화호'];
     const trainNameArr = [];
     tc = 0;
@@ -323,6 +309,8 @@ function searchStation(){
   }
   inputEvent('.station > li', stationNameArr);
   inputEvent('.train > li', trainNameArr);
+  
+ 
 }
 searchStation();
 //hidden 이 없는 station li 를 클릭한다면 dataset 의 값을 input value에 출력
@@ -335,20 +323,30 @@ function setupStationClickEvent(name) {
       const getName = e.target.getAttribute('data-name');
       let fourParent = e.target.closest('.input-container');    
       let targetParent = fourParent.parentNode.querySelector('input');
+      
+      if(!fourParent.classList.contains('d-none')){
+        fourParent.classList.add('d-none');
+      }
       targetParent.value = getName;
       console.log(fourParent);
-      fourParent.style.display = 'none';
-      // if (!fourParent.classList.contains('hidden')) {
-      // } 
-      // if(fourParent.style.display === ''){
-      //   console.log('null입니다');
-        
-      //   fourParent.classList.remove('hidden');
-      // }else{
-      //   fourParent.style.display = 'block';
-      // }
     });
   });
+}
+// Form의 input 클릭 시 입력창을 띄워주는 함수
+for(let ib of inputBox){
+  ib.querySelector('.input-container').style.display = 'none';
+  ib.addEventListener('click', ()=>{
+    for(let box of inputBox){
+      box.querySelector('.input-container').style.display = 'none';
+      box.style.borderColor = 'var(--darkGray)';
+    }
+    if(ib.querySelector('.input-container').classList.contains('d-none')){
+      ib.querySelector('.input-container').classList.remove('d-none');
+    }else{
+      ib.querySelector('.input-container').style.display = 'block';
+    }
+    ib.style.borderColor = 'var(--primary)';
+  })
 }
 
 //input에 값이 입력 되면 실행되는 이벤트
@@ -366,16 +364,12 @@ function inputEvent(name, filterArr){
       //선택한 요소의 부모를 찾고 그 부모의 자식 중의 li 요소를 찾은 후 d-none을 제거 
       for(let fil of filteredArr){
         e.target.parentElement.querySelectorAll('li')[fil.id].classList.remove('d-none');
-       
       }
     });
   }
 }
-// function submitEvent(){
-//   submitBtn.addEventListener('click', ()=>{
-    
-//   })
-// }
+
+
 function setCookie(){
   const popup = document.querySelector('.popup');
   const check = document.querySelector('.popup-footer #cookie-check');

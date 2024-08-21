@@ -41,7 +41,7 @@
   display: none;
 }
 .d-none {
-  display: none;
+  display: none !important;
 }
 /* Font */
 body{
