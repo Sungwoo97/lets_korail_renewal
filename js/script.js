@@ -113,10 +113,10 @@ function autoSlide(){
 autoSlide();
 
 // 마우스가 들어오면 자동 슬라이드 정지
-slideWrapper.addEventListener('mouseenter', ()=>{
+slideWrapper.addEventListener('mouseover', ()=>{
   clearInterval(slideTimer);
 });
-slideWrapper.addEventListener('mouseleave',()=>{
+slideWrapper.addEventListener('mouseout',()=>{
   autoSlide();
 });
 // 왕복 편도 색상 변환
