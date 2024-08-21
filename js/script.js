@@ -23,6 +23,7 @@ const train =  document.querySelectorAll('.train');
 
 
 
+
 // 슬라이드 복사
 for(let i = 0; i<slidesCount;i++){
   let cloneSlide = slides[i].cloneNode(true); 
@@ -128,7 +129,6 @@ function formWayChange(){
       }
       way.classList.add('way-active');
     });
-    
   }
 }
 formWayChange();
@@ -282,10 +282,6 @@ function dataset(dataset){
 }
 dataset(servicesText);
 
-function searchTrain(){
-  
-}
-
 // 역 검색 함수
 function searchStation(){
   const stationNameArr = [];
@@ -322,26 +318,24 @@ function searchStation(){
         name:tr
     });
     train.innerHTML = trainHTML;
-    console.log(trainNameArr);
   }
-
-  
   inputEvent('.station > li', stationNameArr);
   inputEvent('.train > li', trainNameArr);
 }
 //hidden 이 없는 station li 를 클릭한다면 dataset 의 값을 input value에 출력
 function setupStationClickEvent(name) {
+
   const eventName = document.querySelectorAll(name); // 모든 역 링크를 선택
   dataset(eventName);
   eventName.forEach((sta, idx) => {
     sta.addEventListener('click', (e) => {
       e.preventDefault();  // 링크 기본 동작 방지
       const getName = e.target.getAttribute('data-name');
-      let fourParent = e.target.parentNode.parentNode.parentNode.parentNode;
+      let fourParent = e.target.parentNode.parentNode.parentNode.parentNode;    
       let targetParent = fourParent.parentNode.querySelector('input');
-      if(!fourParent.classList.contains('hidden')){
+      if (!fourParent.classList.contains('hidden')) {
         targetParent.value = getName;
-      }
+      } 
     });
   });
 }
@@ -361,7 +355,75 @@ function inputEvent(name, filterArr){
       //선택한 요소의 부모를 찾고 그 부모의 자식 중의 li 요소를 찾은 후 d-none을 제거 
       for(let fil of filteredArr){
         e.target.parentElement.querySelectorAll('li')[fil.id].classList.remove('d-none');
+       
       }
     });
   }
 }
+// function submitEvent(){
+//   submitBtn.addEventListener('click', ()=>{
+    
+//   })
+// }
+function setCookie(){
+  const popup = document.querySelector('.popup');
+  const check = document.querySelector('.popup-footer #cookie-check');
+  const button = document.querySelector('.popup-footer button');
+
+  button.addEventListener('click', ()=>{
+    if(check.checked){
+      //쿠키 생성
+      setCookie('portfolio', 'lets Korail', 1);
+    }else{
+      //쿠키 제거
+      delCookie('portfolio','lets Korail');
+    }
+    popup.classList.remove('show');
+  });
+
+  function setCookie(name, val, due){
+    let date = new Date();
+    date.setDate(date.getDate() + due);
+
+    let myCookie = `${name}=${val};expires=`+date.toUTCString();
+    document.cookie = myCookie;
+  }
+
+  function delCookie(name, val){
+    let date = new Date();
+    date.setDate(date.getDate() - 1);
+
+    let myCookie =`${name}=${val};expires=`+date.toUTCString();
+    document.cookie = myCookie;
+  }
+
+  function checkCookie(name, val){
+    let checkCookies = `${name}=${val}`
+    if(document.cookie.search(checkCookies) === -1){
+      popup.classList.add('show');
+    }
+  }
+  checkCookie('portfolio','lets Korail');
+}
+setCookie();
+
+function backtotopBtn(){
+  const goTop = document.querySelector('#go-top');
+
+  window.addEventListener('scroll', ()=>{
+    let scrollAmt = window.scrollY;
+    if(scrollAmt > 300){
+      goTop.classList.add('active');
+    }else{
+      goTop.classList.remove('active');
+    }
+  })
+  goTop.addEventListener('click', (e)=>{
+    e.preventDefault();
+     window.scrollTo({
+    left: 0,
+    top: 0,
+    behavior:'smooth'});
+  })
+}
+backtotopBtn();

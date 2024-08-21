@@ -49,21 +49,68 @@ body{
   line-height: 24px;
   color: var(--black);
 }
-/* Cookie */
+/* Popup */
 .popup{
   position: fixed;
+  width: 400px;
   left: 100px; top: 100px;
   background: #fff;
   box-shadow: 3px 3px 10px rgba(0,0,0,.2);
-  border-radius: 10px;
-  padding: 5px 20px 10px;
+  border-radius: 5px;
+  padding: 20px 40px 10px;
   display: none;
-  z-index: 1;
+  z-index: 2;
+  border: 3px solid var(--primary);
 }
 .popup.show{
   display: block;
 }
-
+.popup-header{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-weight: bold;
+  margin-bottom: 32px;
+  
+}
+.popup-logo{
+  width: 204px;
+  height: 64px;
+  text-indent: -9999em;
+  background: url('../images/Logo.svg') no-repeat;
+  display: block;
+}
+.popup-main{
+  padding-left: 25px;
+  margin-bottom: 64px;
+  font-weight: 500;
+}
+.popup-main h3{
+  font-weight: bold;
+}
+.popup-main hr{
+  margin: 16px 0;
+  border: 0;
+  height: 2px;
+  width: 100%;
+  background: #000;
+}
+.popup-main > p:last-child{
+  font-weight: 500;
+  font-size: 14px;
+}
+.popup-footer{
+  padding-left: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.popup-footer button{
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+}
 /* Header */ 
 header>div { 
   box-sizing: border-box;
@@ -753,4 +800,23 @@ footer{
   line-height: 22px;
   text-align: center;
   padding: 0 0 48px;
+}
+#go-top {    
+	width: 48px; 
+	height: 48px;   
+	position: fixed; 
+	bottom: 48px; 
+	right: 48px;
+	line-height:48px;
+	text-align:center; 	
+  border-radius: 3px;
+	background-color:var(--darkGray);
+	color:#fff;
+  opacity: 0;
+  pointer-events: none;
+  transition:.4s;
+}
+#go-top.active{
+  opacity: 1;
+  pointer-events: auto;
 }
