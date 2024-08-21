@@ -18,6 +18,7 @@ const servicesAfter = document.querySelectorAll('.services > ul > li');
 const servicesText = document.querySelectorAll('.services-box > ul > li');
 const station = document.querySelectorAll('.station');
 const searchInput = document.querySelectorAll('.station-search');
+const train =  document.querySelectorAll('.train');
 
 
 
@@ -272,18 +273,19 @@ function inputFormClicked(){
 inputFormClicked();
 
 //after content에 값을 넘겨주는 함수
-function servicesDataset(){
-  for(let sd of servicesText){
-    sd.dataset.text = sd.innerText;
-    let servicesData = sd.dataset.text;
-    sd.setAttribute('data-text', servicesData);
+function dataset(dataset){
+  for(let sd of dataset){
+    sd.dataset.name = sd.innerText;
+    let nameData = sd.dataset.name;
+    sd.setAttribute('data-name', nameData);
     }
 }
-servicesDataset();
+dataset(servicesText);
 
-function cookies(){
-
+function searchTrain(){
+  
 }
+
 // 역 검색 함수
 function searchStation(){
   const stationNameArr = [];
@@ -294,9 +296,9 @@ function searchStation(){
   .then(data => {
     let stationData = data.data;
     let stationHTML='<h3>역 검색</h3>';
-
+    //data-name="${sta.역이름}"
     for(let sta of stationData){
-      stationHTML += `<li><a href="#" data-name="${sta.역이름}">${sta.역이름}</a></li>`;
+      stationHTML += `<li><a href="#" >${sta.역이름}</a></li>`;
       stationNameArr.push({
         id:counter++,
         name:sta.역이름
@@ -305,15 +307,53 @@ function searchStation(){
     for(let sta of station){
       sta.innerHTML = stationHTML;
     }
-    //setupStationClickEvent();
+    
+    setupStationClickEvent('.station > li a');
+    setupStationClickEvent('.train > li a');
   });
-  //stationDataset();
-  //input에 값이 입력 되면 실행되는 이벤트
+  let trainArr = ['KTX', 'KTX-청룡', 'ITX-청춘', 'ITX-이음', '무궁화호'];
+    const trainNameArr = [];
+    tc = 0;
+    let trainHTML='<h3>열차 검색</h3>';
+    for(let tr of trainArr){
+     trainHTML += `<li><a href="#" >${tr}</a></li>`;
+      trainNameArr.push({
+       id:tc++,
+        name:tr
+    });
+    train.innerHTML = trainHTML;
+    console.log(trainNameArr);
+  }
+
+  
+  inputEvent('.station > li', stationNameArr);
+  inputEvent('.train > li', trainNameArr);
+}
+//hidden 이 없는 station li 를 클릭한다면 dataset 의 값을 input value에 출력
+function setupStationClickEvent(name) {
+  const eventName = document.querySelectorAll(name); // 모든 역 링크를 선택
+  dataset(eventName);
+  eventName.forEach((sta, idx) => {
+    sta.addEventListener('click', (e) => {
+      e.preventDefault();  // 링크 기본 동작 방지
+      const getName = e.target.getAttribute('data-name');
+      let fourParent = e.target.parentNode.parentNode.parentNode.parentNode;
+      let targetParent = fourParent.parentNode.querySelector('input');
+      if(!fourParent.classList.contains('hidden')){
+        targetParent.value = getName;
+      }
+    });
+  });
+}
+searchStation();
+//input에 값이 입력 되면 실행되는 이벤트
+function inputEvent(name, filterArr){
   for(let si of searchInput){
     si.addEventListener('input', (e)=>{
-      const stationList = document.querySelectorAll('.station > li');
+      si.classList.remove('d-none');
+      const stationList = document.querySelectorAll(name);
       let keywords = e.target.value;
-      let filteredArr = stationNameArr.filter(stafilter => stafilter.name.includes(keywords));
+      let filteredArr = filterArr.filter(stafilter => stafilter.name.includes(keywords));
       // 모든 요소에 d-none을 추가해서 화면에서 제거
       for(let sta of stationList){
         sta.classList.add('d-none');
@@ -323,30 +363,5 @@ function searchStation(){
         e.target.parentElement.querySelectorAll('li')[fil.id].classList.remove('d-none');
       }
     });
-    
   }
 }
-
-
-function setupStationClickEvent() {
-  const stationList = document.querySelectorAll('.station > li a'); // 모든 역 링크를 선택
-  const stationInput = document.querySelectorAll('.station-search');
-
-  stationList.forEach((sta, idx) => {
-    sta.addEventListener('click', (e) => {
-      e.preventDefault();  // 링크 기본 동작 방지
-      const stationName = e.target.getAttribute('data-name');
-      stationInput.forEach((input, idx)=>{
-        console.log(input.value);
-        input.classList.remove('on');
-      })
-      searchInput[idx].classList.add('on');
-       
-     
-      // if(stationInput.classList.contains('on')){
-      //   input.value = stationName;  // input 필드에 역 이름 설정
-      // }
-    });
-  });
-}
-searchStation();
