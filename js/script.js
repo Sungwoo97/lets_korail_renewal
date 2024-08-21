@@ -328,7 +328,6 @@ function setupStationClickEvent(name) {
         fourParent.classList.add('d-none');
       }
       targetParent.value = getName;
-      console.log(fourParent);
     });
   });
 }
